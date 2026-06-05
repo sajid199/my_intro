@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sajid Ahmad — SAP Security Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e17;
+    --ink2: #2e2d3d;
+    --muted: #6b6a7d;
+    --light: #f4f3f0;
+    --card: #ffffff;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-mid: #7F77DD;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --border: rgba(15,14,23,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--ink);
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    padding: 2.5rem 1.25rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(83,74,183,0.18);
+    top: -60px; right: -60px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(127,119,221,0.10);
+    bottom: -40px; left: -30px;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--purple-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 600; color: #fff;
+    border: 3px solid rgba(255,255,255,0.15);
+    margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .hero-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px; color: rgba(255,255,255,0.8);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #5DCAA5; }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 1.25rem;
+  }
+  .stat {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 14px 16px;
+    border: 0.5px solid var(--border);
+  }
+  .stat-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .stat-l { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* SECTION */
+  .section { padding: 0 1.25rem; margin-bottom: 1.25rem; }
+  .section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* INTRO CARD */
+  .intro-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+  }
+  .intro-para {
+    padding: 1rem 1.25rem;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink2);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .intro-para:last-child { border-bottom: none; }
+  .intro-para strong { color: var(--ink); font-weight: 600; }
+  .intro-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--purple); text-transform: uppercase;
+    display: block; margin-bottom: 5px;
+  }
+
+  /* PROJECTS */
+  .proj-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .proj-card.current::before { background: var(--purple); }
+  .proj-card.prev::before { background: var(--teal); }
+  .proj-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .proj-sub { font-size: 12px; color: var(--muted); margin: 3px 0 10px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-size: 11px; font-weight: 500;
+    padding: 3px 9px; border-radius: 20px;
+  }
+  .tag-p { background: var(--purple-light); color: var(--purple); }
+  .tag-t { background: var(--teal-light); color: var(--teal); }
+  .tag-b { background: var(--blue-light); color: var(--blue); }
+  .tag-a { background: var(--amber-light); color: var(--amber); }
+  .proj-status {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .proj-status.active { background: var(--teal-light); color: var(--teal); }
+  .proj-status.done { background: var(--border); color: var(--muted); }
+
+  /* SKILLS GRID */
+  .skills-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    padding: 1.25rem;
+  }
+  .skill-group { margin-bottom: 14px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group-label {
+    font-size: 11px; color: var(--muted); font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  /* FLASHCARDS */
+  .fc-wrap {
+    background: var(--card);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    padding: 1.25rem;
+  }
+  .fc-progress {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .fc-bar {
+    height: 100%;
+    background: var(--purple);
+    border-radius: 2px;
+    transition: width 0.35s ease;
+  }
+  .fc-scene {
+    perspective: 900px;
+    margin-bottom: 1rem;
+  }
+  .fc-inner {
+    position: relative;
+    width: 100%; height: 160px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    cursor: pointer;
+  }
+  .fc-inner.flipped { transform: rotateY(180deg); }
+  .fc-face {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .fc-front {
+    background: var(--purple-light);
+    border: 0.5px solid rgba(83,74,183,0.2);
+  }
+  .fc-back {
+    background: var(--teal-light);
+    border: 0.5px solid rgba(15,110,86,0.2);
+    transform: rotateY(180deg);
+  }
+  .fc-q-text { font-size: 14px; font-weight: 500; color: var(--purple); line-height: 1.5; }
+  .fc-a-text { font-size: 13px; color: var(--teal); line-height: 1.6; }
+  .fc-tap { font-size: 11px; color: var(--purple-mid); opacity: 0.7; }
+  .fc-tap-back { font-size: 11px; color: var(--teal); opacity: 0.7; }
+  .fc-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 4px;
+  }
+  .fc-btn {
+    background: none;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 18px;
+    font-size: 13px; font-family: 'DM Sans', sans-serif;
+    color: var(--ink2); cursor: pointer;
+    transition: background 0.15s;
+  }
+  .fc-btn:hover { background: var(--light); }
+  .fc-count { font-size: 12px; color: var(--muted); }
+  .fc-dots { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+  .fc-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+  .fc-dot.on { background: var(--purple); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="avatar">SA</div>
+    <div class="hero-name">Sajid Ahmad</div>
+    <div class="hero-role">SAP Security &amp; GRC Consultant</div>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Capgemini &nbsp;·&nbsp; Since July 2021
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-n">5+</div>
+    <div class="stat-l">Years IT Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">3+</div>
+    <div class="stat-l">Years SAP Security</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">4</div>
+    <div class="stat-l">GRC Modules</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">2</div>
+    <div class="stat-l">Enterprise Projects</div>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="section">
+  <div class="section-title">Interview introduction</div>
+  <div class="intro-card">
+    <div class="intro-para">
+      <span class="intro-label">Opening</span>
+      Good morning / afternoon. I'm <strong>Sajid Ahmad</strong>, an SAP Security and GRC Consultant with around <strong>5 years of IT experience</strong>, including more than 3 years specializing in SAP Security. I'm currently working with <strong>Capgemini</strong>, where I joined in July 2021.
+    </div>
+    <div class="intro-para">
+      <span class="intro-label">Expertise</span>
+      My core expertise covers <strong>SAP ECC, S/4HANA, Fiori Security</strong>, and <strong>SAP GRC Access Control</strong> — including ARA, ARM, EAM, and BRM. Day-to-day I handle user administration, role design, authorization troubleshooting, SU24 updates, transport management, and GRC workflow handling.
+    </div>
+    <div class="intro-para">
+      <span class="intro-label">Current project</span>
+      At <strong>GE Vernova</strong>, I've been part of an S/4HANA implementation and cloud migration — designing security roles, Fiori catalogs, spaces, OData services, and authorization concepts. I also support <strong>SOX compliance</strong> and audit requirements.
+    </div>
+    <div class="intro-para">
+      <span class="intro-label">Previous project</span>
+      At <strong>Herff Jones</strong>, I handled end-to-end SAP Security implementation — Fiori configuration, GRC access management, and SoD risk mitigation.
+    </div>
+    <div class="intro-para">
+      <span class="intro-label">Strengths &amp; goal</span>
+      My strengths lie in authorization troubleshooting using <strong>SU53, ST01, and STAUTHTRACE</strong>, and collaborating with cross-functional teams for secure, compliant SAP solutions. I'm looking for an opportunity to deepen my expertise in S/4HANA and GRC.
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section">
+  <div class="section-title">Project experience</div>
+  <div class="proj-card current">
+    <span class="proj-status active">Current</span>
+    <div class="proj-name">GE Vernova</div>
+    <div class="proj-sub">S/4HANA Implementation &amp; Cloud Migration</div>
+    <div class="tags">
+      <span class="tag tag-p">S/4HANA Security</span>
+      <span class="tag tag-p">Fiori Catalogs</span>
+      <span class="tag tag-p">OData Services</span>
+      <span class="tag tag-p">SOX Compliance</span>
+      <span class="tag tag-p">Authorization Design</span>
+    </div>
+  </div>
+  <div class="proj-card prev">
+    <span class="proj-status done">Previous</span>
+    <div class="proj-name">Herff Jones</div>
+    <div class="proj-sub">SAP Security Implementation</div>
+    <div class="tags">
+      <span class="tag tag-t">Role Administration</span>
+      <span class="tag tag-t">Fiori Config</span>
+      <span class="tag tag-t">GRC Access Mgmt</span>
+      <span class="tag tag-t">SoD Mitigation</span>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+  <div class="section-title">Technical skills</div>
+  <div class="skills-card">
+    <div class="skill-group">
+      <div class="skill-group-label">SAP Platforms</div>
+      <div class="tags">
+        <span class="tag tag-b">SAP ECC</span>
+        <span class="tag tag-b">S/4HANA</span>
+        <span class="tag tag-b">Fiori Security</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">GRC Modules</div>
+      <div class="tags">
+        <span class="tag tag-p">ARA</span>
+        <span class="tag tag-p">ARM</span>
+        <span class="tag tag-p">EAM</span>
+        <span class="tag tag-p">BRM</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Troubleshooting tools</div>
+      <div class="tags">
+        <span class="tag tag-a">SU53</span>
+        <span class="tag tag-a">ST01</span>
+        <span class="tag tag-a">STAUTHTRACE</span>
+        <span class="tag tag-a">SU24</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Compliance</div>
+      <div class="tags">
+        <span class="tag tag-t">SOX Compliance</span>
+        <span class="tag tag-t">Audit Support</span>
+        <span class="tag tag-t">SoD Risk Mitigation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="section">
+  <div class="section-title">Memory flashcards</div>
+  <div class="fc-wrap">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:1rem">Tap card to flip · use arrows to navigate</div>
+    <div class="fc-progress"><div class="fc-bar" id="bar"></div></div>
+    <div class="fc-scene">
+      <div class="fc-inner" id="fc" onclick="flip()">
+        <div class="fc-face fc-front">
+          <div class="fc-q-text" id="fc-q"></div>
+          <div class="fc-tap">Tap to see answer ↺</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-a-text" id="fc-a"></div>
+          <div class="fc-tap-back">Tap to flip back ↺</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-dots" id="fc-dots"></div>
+    <div class="fc-nav" style="margin-top:12px">
+      <button class="fc-btn" onclick="go(-1)">← Prev</button>
+      <span class="fc-count" id="fc-count"></span>
+      <button class="fc-btn" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const cards = [
+  {
+    q: "What is your name and current role?",
+    a: "I'm Sajid Ahmad, an SAP Security and GRC Consultant at Capgemini, where I joined in July 2021."
+  },
+  {
+    q: "How many years of experience do you have?",
+    a: "Around 5 years of total IT experience, including 3+ years specializing in SAP Security and GRC consulting."
+  },
+  {
+    q: "Which SAP platforms have you worked on?",
+    a: "SAP ECC, S/4HANA, Fiori Security, and SAP GRC Access Control — covering ARA, ARM, EAM, and BRM modules."
+  },
+  {
+    q: "What are your day-to-day activities?",
+    a: "User administration, role design, authorization troubleshooting, SU24 updates, transport management, and GRC workflow handling."
+  },
+  {
+    q: "Tell me about your current project at GE Vernova.",
+    a: "S/4HANA implementation and cloud migration — designing security roles, Fiori catalogs, OData services, and authorization concepts. I also support SOX compliance and audits."
+  },
+  {
+    q: "Tell me about your Herff Jones project.",
+    a: "End-to-end SAP Security implementation including Fiori configuration, GRC access management, and SoD risk mitigation."
+  },
+  {
+    q: "What troubleshooting tools do you use?",
+    a: "SU53, ST01, and STAUTHTRACE for authorization troubleshooting. Also SU24 for maintaining authorization default values."
+  },
+  {
+    q: "What are you looking for in your next role?",
+    a: "To deepen my expertise in S/4HANA and GRC while contributing to meaningful security and compliance objectives."
+  }
+];
+
+let cur = 0, isFlipped = false;
+
+function render() {
+  document.getElementById('fc-q').textContent = cards[cur].q;
+  document.getElementById('fc-a').textContent = cards[cur].a;
+  document.getElementById('fc-count').textContent = (cur + 1) + ' of ' + cards.length;
+  document.getElementById('bar').style.width = Math.round(((cur + 1) / cards.length) * 100) + '%';
+  const dots = document.getElementById('fc-dots');
+  dots.innerHTML = '';
+  cards.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'fc-dot' + (i === cur ? ' on' : '');
+    dots.appendChild(d);
+  });
+  if (isFlipped) {
+    document.getElementById('fc').classList.add('flipped');
+  } else {
+    document.getElementById('fc').classList.remove('flipped');
+  }
+}
+
+function flip() {
+  isFlipped = !isFlipped;
+  document.getElementById('fc').classList.toggle('flipped');
+}
+
+function go(dir) {
+  isFlipped = false;
+  cur = (cur + dir + cards.length) % cards.length;
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>
